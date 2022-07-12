@@ -3,7 +3,7 @@ fields:
   - title: Network
     id: eth_network
     description: >-
-      mev-boost can use one of two networks right now, ropsten and kiln.  
+      mev-boost can use one of three networks right now - ropsten, kiln and sepolia.  
         
 
       Other networks are already included but might not work. There are also no public relays for other networks available right now.  
@@ -25,6 +25,9 @@ fields:
     description: >-
       mev-boost can use multiple flashbots/mev relays. You can input your mev-relays here (either single string or comma-separated list).  
   
+      For Sepolia enter:  
+        
+      https://0x845bd072b7cd566f02faeb0a4033ce9399e42839ced64e8b2adcfc859ed1e8e1a5a293336a49feac6d9a5edb779be53a@builder-relay-sepolia.flashbots.net
 
       For Ropsten enter:  
 
