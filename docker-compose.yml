@@ -1,0 +1,14 @@
+version: "3.4"
+services:
+  mev-boost.public.dappnode.eth:
+    build:
+      context: build
+    volumes:
+      - "data:/var/lib/mev-boost"
+    environment:
+      NETWORK: ""
+      RELAYS: ""
+    image: "mev-boost.public.dappnode.eth:0.1.0"
+    restart: unless-stopped
+volumes:
+  data: {}

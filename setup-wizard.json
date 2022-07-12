@@ -1,0 +1,42 @@
+version: "2"
+fields:
+  - title: Network
+    id: eth_network
+    description: >-
+      mev-boost can use one of two networks right now, ropsten and kiln.  
+        
+
+      Other networks are already included but might not work. There are also no public relays for other networks available right now.  
+  
+      
+      Please specify which network you want to use.  
+    target:
+      type: environment
+      name: NETWORK
+      service: mev-boost.public.dappnode.eth
+    enum:
+      - ropsten
+      - kiln
+      - sepolia
+      - mainnet
+    required: true
+  - title: MEV Relays
+    id: mev_relays
+    description: >-
+      mev-boost can use multiple flashbots/mev relays. You can input your mev-relays here (either single string or comma-separated list).  
+  
+
+      For Ropsten enter:  
+
+      https://0xb124d80a00b80815397b4e7f1f05377ccc83aeeceb6be87963ba3649f1e6efa32ca870a88845917ec3f26a8e2aa25c77@builder-relay-ropsten.flashbots.net  
+
+      For Kiln enter:  
+
+      https://0xb5246e299aeb782fbc7c91b41b3284245b1ed5206134b0028b81dfb974e5900616c67847c2354479934fc4bb75519ee1@builder-relay-kiln.flashbots.net
+    target:
+      type: environment
+      name: RELAYS
+      service: mev-boost.public.dappnode.eth
+    pattern: "https:\/\/(0x[a-fA-F0-9]{96})@"
+    patternErrorMessage: Must be a valid flashbots relay address
+    required: true
