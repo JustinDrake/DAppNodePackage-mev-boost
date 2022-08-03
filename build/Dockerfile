@@ -1,4 +1,6 @@
-FROM golang:1.18.3-alpine3.16 AS build
+FROM golang:1.18.5-alpine AS build
+
+ARG UPSTREAM_VERSION
 
 RUN apk add --update-cache \
         make \
@@ -8,11 +10,12 @@ RUN apk add --update-cache \
         libc-dev
 
 WORKDIR /build
-RUN git clone https://github.com/flashbots/mev-boost
+RUN git clone https://github.com/flashbots/mev-boost --single-branch --depth 1 --branch $UPSTREAM_VERSION
+
 WORKDIR /build/mev-boost
 RUN make build
 
-FROM golang:1.18.3-alpine3.16
+FROM golang:1.18.5-alpine
 
 COPY --from=build /build/mev-boost/mev-boost /mev-boost/mev-boost
 WORKDIR /mev-boost

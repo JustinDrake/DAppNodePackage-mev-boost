@@ -3,12 +3,14 @@ services:
   mev-boost.public.dappnode.eth:
     build:
       context: build
+      args:
+        UPSTREAM_VERSION: v0.7.8
     volumes:
       - "data:/var/lib/mev-boost"
     environment:
       NETWORK: ""
       RELAYS: ""
-    image: "mev-boost.public.dappnode.eth:0.1.1"
+    image: "mev-boost.public.dappnode.eth:0.7.8"
     restart: unless-stopped
 volumes:
   data: {}
