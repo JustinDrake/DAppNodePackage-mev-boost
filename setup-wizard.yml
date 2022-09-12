@@ -2,45 +2,62 @@ version: "2"
 fields:
   - title: Network
     id: eth_network
-    description: >-
-      mev-boost can use one of four networks right now - ropsten, kiln, sepolia and goerli.  
-        
-
-      Other networks are already included but might not work. There are also no public relays for other networks available right now.  
-  
-      
+    description: >-      
       Please specify which network you want to use.  
     target:
       type: environment
       name: NETWORK
       service: mev-boost.public.dappnode.eth
     enum:
+      - mainnet
+      - goerli
       - ropsten
       - kiln
       - sepolia
-      - goerli
-      - mainnet
     required: true
   - title: MEV Relays
     id: mev_relays
     description: >-
-      mev-boost can use multiple flashbots/mev relays. You can input your mev-relays here (either single string or comma-separated list).  
+      mev-boost can use multiple flashbots/mev relays. You can input your mev-relays here (either single string or comma-separated list -> relay1 or relay1,relay2).  
   
+      # -= Mainnet =-   
+         
+         
+      Non-censoring relays include:   
+
+      - https://0x8b5d2e73e2a3a55c6c87b8b6eb92e0149a125c852751db1422fa951e42a09b82c142c3ea98d0d9930b056a3bc9896b8f@bloxroute.max-profit.blxrbdn.com   
+
+      - Fold Finance Relay coming soon!   
+         
+
+      "Ethical Censoring"/Censoring relays include:   
+
+      - https://0xad0a8bb54565c2211cee576363f3a347089d2f07cf72679d16911d740262694cadb62d7fd7483f27afd714ca0f1b9118@bloxroute.ethical.blxrbdn.com   
+
+      - https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net   
+
+
+
+      # -= Testnet =-
+
       For **Sepolia** enter:  
 
-      https://0x845bd072b7cd566f02faeb0a4033ce9399e42839ced64e8b2adcfc859ed1e8e1a5a293336a49feac6d9a5edb779be53a@builder-relay-sepolia.flashbots.net  
+      - https://0x845bd072b7cd566f02faeb0a4033ce9399e42839ced64e8b2adcfc859ed1e8e1a5a293336a49feac6d9a5edb779be53a@builder-relay-sepolia.flashbots.net   
       
+
       For **Ropsten** enter:  
 
-      https://0xb124d80a00b80815397b4e7f1f05377ccc83aeeceb6be87963ba3649f1e6efa32ca870a88845917ec3f26a8e2aa25c77@builder-relay-ropsten.flashbots.net  
+      - https://0xb124d80a00b80815397b4e7f1f05377ccc83aeeceb6be87963ba3649f1e6efa32ca870a88845917ec3f26a8e2aa25c77@builder-relay-ropsten.flashbots.net   
+
 
       For **Kiln** enter:  
 
-      https://0xb5246e299aeb782fbc7c91b41b3284245b1ed5206134b0028b81dfb974e5900616c67847c2354479934fc4bb75519ee1@builder-relay-kiln.flashbots.net  
+      - https://0xb5246e299aeb782fbc7c91b41b3284245b1ed5206134b0028b81dfb974e5900616c67847c2354479934fc4bb75519ee1@builder-relay-kiln.flashbots.net   
+
 
       For **Goerli** enter:  
 
-      https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net  
+      - https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net   
     target:
       type: environment
       name: RELAYS
