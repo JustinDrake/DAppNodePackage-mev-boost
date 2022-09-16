@@ -4,13 +4,15 @@ services:
     build:
       context: build
       args:
-        UPSTREAM_VERSION: v0.8.2
+        UPSTREAM_VERSION: v1.3.0
     volumes:
       - "data:/var/lib/mev-boost"
     environment:
-      NETWORK: ""
-      RELAYS: ""
-    image: "mev-boost.public.dappnode.eth:0.2.1"
+      NETWORK: mainnet
+      ADDITIONAL_RELAYS: ""
+      RELAY_MODE: Non-compliant
+      ONLY_USER_RELAYS: Use pre-defined relays
+    image: "mev-boost.public.dappnode.eth:0.2.2"
     restart: unless-stopped
 volumes:
   data: {}
