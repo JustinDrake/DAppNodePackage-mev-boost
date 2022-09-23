@@ -34,9 +34,9 @@ fields:
       name: RELAY_MODE
       service: mev-boost.public.dappnode.eth
     enum:
+      - "Non-compliant"
       - "Ethical"
       - "Compliant"
-      - "Non-compliant"
     required: true
     if: { "eth_network": { "enum": ["mainnet"] } }
   - title: Type of MEV relay
@@ -64,17 +64,30 @@ fields:
       name: ONLY_USER_RELAYS
       service: mev-boost.public.dappnode.eth
     enum:
-      - "Don't use pre-defined relays"
       - "Use pre-defined relays"
+      - "Don't use pre-defined relays"
     required: true
     if: { "eth_network": { "enum": ["mainnet"] } }
   - title: MEV Relays
     id: mev_relays
     description: >-
-      mev-boost can use multiple flashbots/mev relays. You can input your mev-relays here (either single string or comma-separated list -> relay1 or relay1,relay2).  
+      You can enter your own MEV-boost relays here. The relays you enter here will be appended to the default lists provided in the package (either single string or comma-separated list -> relay1 or relay1,relay2).   
     target:
       type: environment
       name: ADDITIONAL_RELAYS
       service: mev-boost.public.dappnode.eth
     pattern: "https:\/\/(0x[a-fA-F0-9]{96})@"
     patternErrorMessage: Must be a valid relay address
+    if: { "only_user_relay": { "enum": ["Use pre-defined relays"] } }
+  - title: MEV Relays
+    id: mev_relays
+    description: >-
+      Please provide MEV-boost relays here, as you've chosen not to use the pre-defined relay list.   
+    target:
+      type: environment
+      name: ADDITIONAL_RELAYS
+      service: mev-boost.public.dappnode.eth
+    pattern: "https:\/\/(0x[a-fA-F0-9]{96})@"
+    patternErrorMessage: Must be a valid relay address
+    required: true
+    if: { "only_user_relay": { "enum": ["Don't use pre-defined relays"] } }
