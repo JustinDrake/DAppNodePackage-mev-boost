@@ -10,11 +10,9 @@ read_relays () {
   while IFS= read -r line
   do
     if [ "$RELAYS" == "" ]; then
-        echo $line
         RELAYS="$line"
     else
         RELAYS="$RELAYS,$line"
-        echo $line
     fi
   done < "/$1/$(echo "$2" | awk '{print tolower($0)}')"
 }

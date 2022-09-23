@@ -11,9 +11,6 @@ fields:
     enum:
       - mainnet
       - goerli
-      - ropsten
-      - kiln
-      - sepolia
     required: true
   - title: Type of MEV relay
     id: relay_mode
@@ -42,16 +39,22 @@ fields:
       - "Non-compliant"
     required: true
     if: { "eth_network": { "enum": ["mainnet"] } }
-  - title: MEV Relays
-    id: mev_relays
-    description: >-
-      mev-boost can use multiple flashbots/mev relays. You can input your mev-relays here (either single string or comma-separated list -> relay1 or relay1,relay2).  
+  - title: Type of MEV relay
+    id: relay_mode
+    description: >-      
+      Please choose the type of MEV you want to extract.   
+
+      For Goerli you can only choose one relay list, which is can be found [here](https://github.com/Nabsku/DAppNodePackage-mev-boost/tree/main/build/goerli/goerli-default-list).   
+   
+      If you want to use your own Goerli relay, specify one in the option `MEV Relays` below.
     target:
       type: environment
-      name: ADDITIONAL_RELAYS
+      name: RELAY_MODE
       service: mev-boost.public.dappnode.eth
-    pattern: "https:\/\/(0x[a-fA-F0-9]{96})@"
-    patternErrorMessage: Must be a valid relay address
+    enum:
+      - "Goerli-default-list"
+    required: true
+    if: { "eth_network": { "enum": ["goerli"] } }
   - title: Pre-defined relay toggle
     id: only_user_relay
     description: >-      
@@ -65,3 +68,13 @@ fields:
       - "Use pre-defined relays"
     required: true
     if: { "eth_network": { "enum": ["mainnet"] } }
+  - title: MEV Relays
+    id: mev_relays
+    description: >-
+      mev-boost can use multiple flashbots/mev relays. You can input your mev-relays here (either single string or comma-separated list -> relay1 or relay1,relay2).  
+    target:
+      type: environment
+      name: ADDITIONAL_RELAYS
+      service: mev-boost.public.dappnode.eth
+    pattern: "https:\/\/(0x[a-fA-F0-9]{96})@"
+    patternErrorMessage: Must be a valid relay address
