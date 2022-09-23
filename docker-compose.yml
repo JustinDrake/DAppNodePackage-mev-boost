@@ -12,7 +12,7 @@ services:
       ADDITIONAL_RELAYS: ""
       RELAY_MODE: Non-compliant
       ONLY_USER_RELAYS: Use pre-defined relays
-    image: "mev-boost.public.dappnode.eth:0.2.3"
+    image: "mev-boost.public.dappnode.eth:0.2.4"
     restart: unless-stopped
 volumes:
   data: {}
